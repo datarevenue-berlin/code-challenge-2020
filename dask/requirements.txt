@@ -1,0 +1,6 @@
+scipy
+cython
+numpy
+pandas
+dask[complete]
+bokeh

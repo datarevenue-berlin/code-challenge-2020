@@ -1,0 +1,31 @@
+version: '2'
+services:
+
+  dask-worker:
+    image: drtools/code-challenge:latest
+    build:
+     context: .
+     dockerfile: Dockerfile
+    command: dask-worker dask-scheduler:8786
+    depends_on:
+      - dask-scheduler
+
+
+  dask-scheduler:
+    image: drtools/code-challenge:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: dask-scheduler
+    ports:
+      - "8787:8787"
+
+  worker:
+    image: drtools/code-challenge:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /work
+    command: python3 cluster_test.py
+    depends_on:
+      - dask-scheduler
