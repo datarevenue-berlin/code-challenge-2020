@@ -1,6 +1,6 @@
 # Datarevenue Code Challenge
 
-Congratulations for making it to the Code Challenge. In this challenge the goal is to provision a docker container sucht that it is able to run a dask-cluster. This might sound complicated but it the challenge comes with a run configuration already.
+Congratulations for making it to the Code Challenge. In this challenge the goal is to provision a docker container such that it is able to run a dask-cluster. This might sound complicated but it the challenge comes with a run configuration already.
 
 Of course this won't start multiple machines in the cloud and run a actual real cluster but instead it uses docker-compose and docker to emulate this situation. You need both installed on your system before you can proceed (We use this tools on a daily basis at datarevenue so it won't be in vain).
 
