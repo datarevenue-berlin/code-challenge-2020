@@ -8,13 +8,13 @@ You will need docker an docker-compose to run this repository:
 * [How to install docker-compose](https://docs.docker.com/compose/install/)
 
 ## Goals
-The repository you see here is a minimal local version of our usual task orchestration pipeline. We run everything in docker containers. So each task must expose his functionality via a CLI. We the use luigi to spin up the containers and pass the necessary arguments to each container. See more details [here](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline).
+The repository you see here is a minimal local version of our usual task orchestration pipeline. We run everything in docker containers. So each task must expose its functionality via a CLI. We the use luigi to spin up the containers and pass the necessary arguments to each container. See more details [here](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline).
 
-It already comes with the a leaf task implemented which will download the dataset for you.
+The repository already comes with the a leaf task implemented which will download the data set for you.
 
 The goal of this challenge is to implement a complete machine learning pipeline. This pipeline should build a proof of concept machine learning model and evaluate it on test data set.
 
-An important part of the goal is to explain the data set as well as the model. So your evaluation should include some plots on how your model makes the predictions.
+An important part of the goal is to explain the data set as well as the model to a fictional client. So your evaluation should include some plots on how your model makes the predictions.
 
 ### Challenge
 To put things into the right perspective consider the following fictional scenario: 
@@ -22,6 +22,13 @@ To put things into the right perspective consider the following fictional scenar
 You are a AI Consultant at Data Revenue. One of our clients is a big online wine seller. After a successful strategic consulting we advice the client to optimize his portfolio by creating a rating predictor for his inventory. We receive a sample dataset (10k rows) from the client and will come back in a week to evaluate our model on a bigger data set that is only accessible from on-premise servers (>100k rows).
 
 The task now is to proof that this is possible to reduce risk before implementing a production solution. Our mini pipeline should later be able to run on their on premise machine which has only docker and docker-compose installed.
+
+### Prerequisites
+Before strating this challenge you should know:
+1. How to train and evaluate a ML model
+1. Have solid understanding of the [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html) library and ideally with [dask](http://docs.dask.org/en/latest/dataframe.html)
+1. how to run [docker containers](https://docs.docker.com/get-started/)
+1. how to specify tasks and dependencies in Spotify's [luigi](https://luigi.readthedocs.io/en/stable/example_top_artists.html)
 
 ### Requirements
 
