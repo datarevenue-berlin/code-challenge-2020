@@ -24,11 +24,11 @@ You are a AI Consultant at Data Revenue. One of our clients is a big online wine
 The task now is to proof that this is possible to reduce risk before implementing a production solution. Our mini pipeline should later be able to run on their on premise machine which has only docker and docker-compose installed.
 
 ### Prerequisites
-Before strating this challenge you should know:
+Before starting this challenge you should know:
 1. How to train and evaluate a ML model
-1. Have solid understanding of the [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html) library and ideally with [dask](http://docs.dask.org/en/latest/dataframe.html)
-1. how to run [docker containers](https://docs.docker.com/get-started/)
-1. how to specify tasks and dependencies in Spotify's [luigi](https://luigi.readthedocs.io/en/stable/example_top_artists.html)
+1. Have solid understanding of the [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html) library and ideally the [dask](http://docs.dask.org/en/latest/dataframe.html) parallel computing library
+1. How to run [docker containers](https://docs.docker.com/get-started/)
+1. How to specify tasks and dependencies in Spotify's [luigi](https://luigi.readthedocs.io/en/stable/example_top_artists.html)
 
 ### Requirements
 
@@ -38,16 +38,18 @@ To specify requirements better let's break this down into individual tasks.
 We already got you covered and implemented this task for you.
 
 #### 2. Make(Train|Test)Dataset
-Read the csv provided by DownloadData and transform it into a numerical matrix read for your ML models. 
+Read the csv provided by DownloadData and transform it into a numerical matrix ready for your ML models. 
 
-Be aware that you dataset is just a sample from the whole dataset so your columns might not represent all possible values. 
+Be aware that the dataset is just a sample from the whole dataset so your columns might not represent all possible values. 
 
 Here at Data Revenue we use dask to parallelize Pandas operations. So we include also a running dask cluster which you *can* (you don't need to) use. Remember to partition you're csv if you plan on using dask (by using [blocksize](http://docs.dask.org/en/latest/dataframe-api.html#dask.dataframe.read_csv)).
 
-Don't forget to split your dataset. So you might need more than a single task for this to run.
+Don't forget to split your data set according to best practices. So you might need more than a single task for this.
 
 #### 3. TrainModel
-Choose a suitable model type and train it on your previously built dataset. We like models that don't take forever to train. The final data set will have more than 100k rows.
+Choose a suitable model type and train it on your previously built data set. We like models that don't take forever to train.. please no DNN (this includes word2vec). For the sake of simplicity you can use fixed hyperparameters (hopefully "hand tuned"). Serialize your model to a file. If necessary this file can include metadata. 
+
+The final data set will have more than 100k rows.
 
 #### 4. EvaluateModel
 Here you can get creative! Pick a good metric and show your communication and presentation skills. Load your model and evaluate it on a held out part of the data set. This task should have a concrete outcome e.g. a zip of plots or even better a whole report (check the [pweave](http://mpastell.com/pweave/) package).
@@ -70,15 +72,19 @@ Your solution will be evaluated against following criteria:
 * Is it runnable? **25 points**
 * ML Best Practices **20 points**
 * Code Quality (incl. Documentation and PEP8) **15 points**
-* Presentation of results **20 points**
-* Correct use of linux tools **10 points**
+* Presentation of results (during interview) **20 points**
+* Correct use of linux tools (dockerfiles, shellscripts) **10 points**
 * Performance (concurrency, correct use of docker cache) **10 points**
 
 ## FAQ
 
 > Can I use notebooks?
 
-Yes you are encouraged to use notebooks to do ad-hoc analysis. Please include them in your submission. Having a pipeline set up in a notebook does not free you from submitting a working task pipeline.
+Yes you are encouraged to use notebooks to do ad-hoc analysis. Please include them in your submission. Though having a pipeline set up in a notebook does not free you from submitting a working task pipeline.
+
+> What is the recommended way to develop this?
+
+Just install all the needed packages in a conda-env or virtualenv and start developing in you favorite IDE or within the beloved jupyter notebook or both. Once you are happy with the results package you're functionality in a CLI and package it with a Dockerfile. 
 
 > Can I use other technologies? Such as R, Spark, Pyspark, Modin, etc.
 
@@ -86,7 +92,7 @@ Yes you can as long as you can provision the docker containers and spin up all t
 
 > Do you accept partial submissions?
 
-Yes you can submit you coding challenge partially finished in case you don't finish in time or have trouble with all the docker stuff. Unfinished challenges will be reviewed if some kind of model evaluation report is included (notebook or similar). You will loose points though as it is not runnable.
+Yes you can submit you coding challenge partially finished in case you don't finish in time or have trouble with all the docker stuff. Unfinished challenges will be reviewed if some kind of model evaluation report is included (notebook or similar). You will loose points though as it will be considered as not runnable (no points in runnable category, no points in linux tools category and maximum 5 points in performance category).
 
 > I found a bug! What should I do?
 
