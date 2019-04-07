@@ -4,18 +4,40 @@ services:
   dask-worker:
     image: code-challenge/dask:latest
     build:
-     context: dask
-     dockerfile: dask/Dockerfile
+     context: ./dask
     command: dask-worker dask-scheduler:8786
+    volumes:
+      - ./data_root:/usr/share/data/
     depends_on:
       - dask-scheduler
-
 
   dask-scheduler:
     image: code-challenge/dask:latest
     build:
-      context: dask
-      dockerfile: dask/Dockerfile
+      context: ./dask
     command: dask-scheduler
+    volumes:
+      - ./data_root:/usr/share/data/
     ports:
       - "8787:8787"
+
+  luigid:
+    image: code-challenge/orchestrator:latest
+      build:
+        context: ./orchestrator
+    command: luigid
+    ports:
+      - "8082:8082"
+
+  orchestrator:
+    image: code-challenge/orchestrator:latest
+    environment:
+      - DATA_ROOT=/usr/share/data/
+    volumes:
+      - ./data_root:/usr/share/data/
+    build:
+      context: ./orchestrator
+    # TODO: Replace with EvaluateModel task
+    command: |
+      luigi --module task DownloadData \
+        --scheduler-host luigid

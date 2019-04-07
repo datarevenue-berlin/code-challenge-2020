@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM drtools/dask:latest
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
