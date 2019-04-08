@@ -23,6 +23,24 @@ You are a AI Consultant at Data Revenue. One of our clients is a big online wine
 
 The task now is to proof that this is possible to reduce risk before implementing a production solution. Our mini pipeline should later be able to run on their on premise machine which has only docker and docker-compose installed.
 
+### Data set
+
+Here is an excerpt of dataset you will be working on:
+
+country|description|designation|points|price|province|region_1|region_2|taster_name|taster_twitter_handle|title|variety|winery
+---|---|---|---|---|---|---|---|---|---|---|---|---
+Italy|Fragrances suggest hay, crushed tomato vine and exotic fruit. The bright but structured palate delivers peach, papaya, cantaloupe and energizing mineral notes alongside fresh acidity. It's nicely balanced with good length,|Kirchleiten|90|30.0|Northeastern Italy|Alto Adige||Kerin O’Keefe|@kerinokeefe|Tiefenbrunner 2012 Kirchleiten Sauvignon (Alto Adige)|Sauvignon|Tiefenbrunner
+France|Packed with fruit and crisp acidity, this is a bright, light and perfumed wine. Red-berry flavors are lifted by red currants and a light spice. Drink now for total freshness.||87|22.0|Loire Valley|Sancerre||Roger Voss|@vossroger|Bernard Reverdy et Fils 2014 Rosé (Sancerre)|Rosé|Bernard Reverdy et Fils
+Italy|This easy, ruby-red wine displays fresh berry flavors and a light, crisp mouthfeel. Pair this no-fuss wine with homemade pasta sauce or potato gnocchi and cheese.||86||Tuscany|Chianti Classico||||Dievole 2009  Chianti Classico|Sangiovese|Dievole
+US|Pretty in violet and rose petals this is a lower-octane Pinot Noir for the winery. Exquisitely rendered in spicy dark cherry and soft, supple tannins, it hails from a cool, coastal vineyard site 1,000 feet atop Occidental Ridge, the coolest source of grapes for Davis.|Horseshoe Bend Vineyard|92|50.0|California|Russian River Valley|Sonoma|Virginie Boone|@vboone|Davis Family 2012 Horseshoe Bend Vineyard Pinot Noir (Russian River Valley)|Pinot Noir|Davis Family
+US|This golden wine confounds in a mix of wet stone and caramel on the nose, the body creamy in vanilla. Fuller in style and body than some, it remains balanced in acidity and tangy citrus, maintaining a freshness and brightness throughout. The finish is intense with more of that citrus, plus an accent of ginger and lemongrass.|Dutton Ranch|93|38.0|California|Russian River Valley|Sonoma|Virginie Boone|@vboone|Dutton-Goldfield 2013 Dutton Ranch Chardonnay (Russian River Valley)|Chardonnay|Dutton-Goldfield
+US|This is a lush, rich Chardonnay with especially ripe pineapple, peach and lime flavors, as well as a coating of oaky, buttered toast.|Signature Selection|84|14.0|California|Dry Creek Valley|Sonoma|||Pedroncelli 2012 Signature Selection Chardonnay (Dry Creek Valley)|Chardonnay|Pedroncelli
+US|Intensely aromatic of exotic spice, potpourri and dried fig, this dry Gewürztraminer is a bit atypical, but thought provoking and enjoyable. Lemon and apple flavors have a slightly yeasty tone, but brisk acidity and puckering tea-leaf tannins lend elegance and balance.|Spezia|87|25.0|New York|North Fork of Long Island|Long Island|Anna Lee C. Iijima||Anthony Nappa 2013 Spezia Gewürztraminer (North Fork of Long Island)|Gewürztraminer|Anthony Nappa
+US|Dry, acidic and tannic, in the manner of a young Barbera, but the flavors of cherries, blackberries and currants aren't powerful enough to outlast the astringency. Drink this tough, rustic wine now.||84|35.0|California|Paso Robles|Central Coast|||Eagle Castle 2007 Barbera (Paso Robles)|Barbera|Eagle Castle
+France|Gold in color, this is a wine with notes of spice, rich fruit and honey, which are all surrounded by intense botrytis. This is a wine that has great aging potential, and its superripeness develops slowly on the palate.||94||Bordeaux|Sauternes||Roger Voss|@vossroger|Château Lamothe Guignard 2009  Sauternes|Bordeaux-style White Blend|Château Lamothe Guignard
+France|Steel and nervy mineralogy are the hallmarks of this wine at this stage. It's still waiting for the fruit to develop, but expect crisp citrus and succulent apples. The aftertaste, tensely fresh now, should soften as the wine develops. This 90% Sauvignon Blanc and 10% Sémillon blend comes from the estate's small vineyard on the slope near Cadillac.||88|12.0|Bordeaux|Bordeaux Blanc||Roger Voss|@vossroger|Château Boisson 2014  Bordeaux Blanc|Bordeaux-style White Blend|Château Boisson
+
+
 ### Prerequisites
 Before starting this challenge you should know:
 1. How to train and evaluate a ML model
@@ -109,4 +127,3 @@ the following naming schema:
 ```
 cc19_<first_name>_<last_name>.zip
 ```
-
