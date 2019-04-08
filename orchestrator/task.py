@@ -20,7 +20,7 @@ class DownloadData(DockerTask):
 
     @property
     def image(self):
-        return 'code-challenge:download-data:v0.1'
+        return 'code-challenge/download-data:v0.1'
 
     @property
     def command(self):
