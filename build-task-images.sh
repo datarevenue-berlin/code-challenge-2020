@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t code-challenge/download-data:v0.1 download_data
+docker build -t code-challenge/download-data:0.1 download_data

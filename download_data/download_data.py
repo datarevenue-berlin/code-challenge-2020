@@ -29,7 +29,8 @@ def download_data(name, url, out_dir):
     None
     """
     log = logging.getLogger('download-data')
-    assert '.csv' not in name, 'Please provide name without csv suffix'
+    assert '.csv' not in name, f'Received {name}! ' \
+        f'Please provide name without csv suffix'
 
     out_path = Path(out_dir) / f'{name}.csv'
 

@@ -1,3 +1,5 @@
+import os
+
 from logging import getLogger
 
 import luigi
@@ -5,7 +7,7 @@ import docker
 from docker.errors import NotFound
 from pathlib import Path
 
-data_root = Path(__file__).parent.parent / 'data_root'
+data_root = Path(os.getenv('PROJECT_ROOT')) / 'data_root'
 
 CONTAINER_TASK_ENV = {}
 CONTAINER_TASK_VOLUMES = {
@@ -14,7 +16,7 @@ CONTAINER_TASK_VOLUMES = {
         'mode': 'rw'
     }
 }
-CONTAINER_TASK_NET = {}
+CONTAINER_TASK_NET = 'code-challenge-2019_default'
 
 
 class ContainerNotFound(Exception):
@@ -186,11 +188,7 @@ class DockerClient(ContainerClient):
                 log = getLogger(__name__)
                 log.warning('Received API exception 409.')
                 ltid = configuration['labels']['luigi_task_id']
-                res = self._c.containers.list(
-                    filters=dict(label=f'luigi_task_id={ltid}'),
-                    all=True)
-                res = sorted(res, key=lambda x: x.labels['luigi_retries'])
-                container = res[-1]
+                container = self.get_executions(ltid)
                 log.info('Found existing container for this task. '
                          'Will try to reconnect')
             else:
@@ -217,7 +215,10 @@ class DockerClient(ContainerClient):
             raise ContainerNotFound()
 
     def get_executions(self, task_id):
-        containers = self._c.containers.list(label=f'luigi_task_id={task_id}')
+        containers = self._c.containers.list(
+            filters={'label': f'luigi_task_id={task_id}'},
+            all=True,
+        )
         containers = sorted(containers, key=lambda x: x.labels['luigi_retries'])
         return containers
 
@@ -354,7 +355,7 @@ class ContainerTask(luigi.Task):
                 self._client.stop_container(self._container)
 
     def _run_and_track_task(self):
-        self._retry_count = self._client.get_retry_count()
+        self._retry_count = self._client.get_retry_count(self.name)
         self._set_name()
         self._container = self._client.run_container(
             self.image,
@@ -367,7 +368,7 @@ class ContainerTask(luigi.Task):
         if log_stream is not None:
             for line in log_stream:
                 self._log.append(line.decode().strip())
-                getLogger(__name__).info(self._log[-1])
+                getLogger('luigi-interface').info(self._log[-1])
                 self.set_status_message('\n'.join(self._log))
         exit_info = self._client.get_exit_info(self._container)
         if exit_info[0] == 0:
