@@ -1,9 +1,12 @@
 import logging
 
 import luigi
+import os
 from pathlib import Path
 
 from util import DockerTask
+
+VERSION = os.getenv('PIPELINE_VERSION', '0.1')
 
 
 class Debug(DockerTask):
@@ -32,7 +35,7 @@ class DownloadData(DockerTask):
 
     @property
     def image(self):
-        return 'code-challenge/download-data:0.1'
+        return f'code-challenge/download-data:{VERSION}'
 
     @property
     def command(self):
@@ -49,4 +52,25 @@ class DownloadData(DockerTask):
 
         return luigi.LocalTarget(
             path=str(out_dir/f'{self.name}.csv')
+        )
+
+
+class MakeDatasets(DockerTask):
+
+    out_dir = luigi.Parameter()
+
+    @property
+    def image(self):
+        return f'code-challenge/make-dataset:{VERSION}'
+
+    def requires(self):
+        return DownloadData()
+
+    def command(self):
+        # TODO: implement correct command
+        pass
+
+    def output(self):
+        return luigi.LocalTarget(
+            path=str(Path(self.out_dir) / '.SUCCESS')
         )

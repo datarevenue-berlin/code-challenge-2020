@@ -8,7 +8,7 @@ You will need docker an docker-compose to run this repository:
 * [How to install docker-compose](https://docs.docker.com/compose/install/)
 
 ## Goals
-The repository you see here is a minimal local version of our usual task orchestration pipeline. We run everything in docker containers. So each task must expose its functionality via a CLI. We the use luigi to spin up the containers and pass the necessary arguments to each container. See more details [here](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline).
+The repository you see here is a minimal local version of our usual task orchestration pipeline. We run everything in docker containers. So each task must expose its functionality via a CLI. We the use luigi to spin up the containers and pass the necessary arguments to each container. See more details [here](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline). Although here we take it a little further by containerizing everything including the luigi workers. Furthermore for performance and simplicity we run everything using docker instead of kubernetes.
 
 The repository already comes with the a leaf task implemented which will download the data set for you.
 
@@ -47,6 +47,7 @@ Before starting this challenge you should know:
 1. Have solid understanding of the [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html) library and ideally the [dask](http://docs.dask.org/en/latest/dataframe.html) parallel computing library
 1. How to run [docker containers](https://docs.docker.com/get-started/)
 1. How to specify tasks and dependencies in Spotify's [luigi](https://luigi.readthedocs.io/en/stable/example_top_artists.html)
+1. Have read our [TaC blogpost](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline). This will be very helpful to understand this repo's architecture!
 
 ### Requirements
 
@@ -76,33 +77,81 @@ Here you can get creative! Pick a good metric and show your communication and pr
 - Each task:
     - Needs to be callable via the command line
     - Needs to be documented
-    - Should have **single** file as output
+    - Should have **single** file as output (if you have two consider putting them into a single file or use a .SUCCESS flag file as the tasks output)
 - Task images that aren't handled by docker-compose should be build and tagged in `./build-task-images.sh`
 - Task images should be minimal to complete the task
-- The data produced by your tasks should be structured (directories and filename) sensible inside `./data_root`
+- The data produced by your tasks should be structured (directories and filename) sensibly inside `./data_root`
 - Don't commit anything in `./data_root`, use `.gitignore`
 - Your code should be PEP8 conform
 
+
+## Get Started
+To get started execute the DownloadData task we provide this task already completely containerized for you. Let's first build the images, we have included a script so this is more streamlined:
+
+`./build-task-images.sh 0.1`
+
+Now to execute the pipeline simply run: 
+
+`docker-compose up orchestrator` 
+
+This will download the data for you. It might be a good idea to execute: 
+
+`watch -n 0.1 docker ps`
+
+in a different terminal window to get a sense of what is going on. 
+
+We recommend to start developing in notebooks or you IDE locally if you're not very familiar with docker. This way we can consider you're solution even if you don't get the whole pipeline running. Also don't hesitate to contact us if you hit a serious blocker instead of wasting too much time on it.
+
+### Troubleshooting in Task Containers
+We also included a Debug task for you which you may start if you need a shell
+inside a task's container. Make sure to adjust the correct image if you want to 
+debug a task other then DownloadData. Then run:
+
+`docker-compose run orchestrator luigi --module task Debug --local-scheduler`
+
+this will spawn a task with luigi but set it to sleep for 3600 seconds. You can
+use that time to get a shell into the container, but first you need to find 
+the containers name, so from a different terminal run:
+
+`docker ps`
+
+check for a container named `debug-<something>` then execute
+
+`docker exec -ti debug-<something> shell`
+
+Now you're in the container and can move around the filesystem execute commands 
+etc. To exit simply type `exit`
 
 ## Evaluation Criteria
 Your solution will be evaluated against following criteria:
 
 * Is it runnable? **25 points**
 * ML Best Practices **20 points**
-* Code Quality (incl. Documentation and PEP8) **15 points**
 * Presentation of results (during interview) **20 points**
+* Code Quality (incl. Documentation and PEP8) **10 points**
+* Structure/Modularity **10 points**
 * Correct use of linux tools (dockerfiles, shellscripts) **10 points**
-* Performance (concurrency, correct use of docker cache) **10 points**
+* Performance (concurrency, correct use of docker cache) **5 points**
+
+## Task as Container TLDR;
+This is a TLDR; of [TaC blogpost](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline)
+
+- We spawn containers from a orchestrator container.
+- These spawned container run pipeline steps.
+- Services that need to be accessed by the containers are built and manged via docker-compose.
+- We see the orchestrator as a service.
+- To share data between containers we must tell the orchestrator where our project is located on the host machine. The orchestrator will then mount this directory into `/usr/share/data` in dynamically spawned containers. 
+- To allow the orchestrator to spawn containers we must expose the hosts docker socket to it.
 
 ## FAQ
 
 > Can I use notebooks?
 
-Yes you are encouraged to use notebooks to do ad-hoc analysis. Please include them in your submission. Though having a pipeline set up in a notebook does not free you from submitting a working task pipeline.
+Yes you are encouraged to use notebooks to do ad-hoc analysis. Please include them in your submission. Though having a pipeline set up in a notebook does not free you from submitting a working containerized pipeline.
 
 > What is the recommended way to develop this?
 
-Just install all the needed packages in a conda-env or virtualenv and start developing in you favorite IDE or within the beloved jupyter notebook or both. Once you are happy with the results package you're functionality in a CLI and package it with a Dockerfile. 
+Just install all the needed packages in a conda-env or virtualenv and start developing in you favorite IDE or within the beloved jupyter notebook or both. Once you are happy with the results, expose you're notebooks functionality in a CLI and package it with a Dockerfile. 
 
 > Can I use other technologies? Such as R, Spark, Pyspark, Modin, etc.
 
@@ -110,7 +159,7 @@ Yes you can as long as you can provision the docker containers and spin up all t
 
 > Do you accept partial submissions?
 
-Yes you can submit you coding challenge partially finished in case you don't finish in time or have trouble with all the docker stuff. Unfinished challenges will be reviewed if some kind of model evaluation report is included (notebook or similar). You will loose points though as it will be considered as not runnable (no points in runnable category, no points in linux tools category and maximum 5 points in performance category).
+Yes you can submit you coding challenge partially finished in case you don't finish in time or have trouble with all the docker stuff. Unfinished challenges will be reviewed if some kind of model evaluation report is included (notebook or similar). You will loose points though as it will be considered as not runnable (no points in runnable category, no points in linux tools category and maximum 3 points in performance category).
 
 > I found a bug! What should I do?
 
@@ -118,7 +167,7 @@ Please contact us! We wrote this in a hurry and also make mistakes. PRs on bugs 
 
 > I have another question!
 
-Feel free to create an issue!
+Feel free to create an issue! Discussions in issues are generally encouraged.
 
 
 ## Submission
