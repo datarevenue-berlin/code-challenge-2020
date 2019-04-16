@@ -57,6 +57,8 @@ To specify requirements better let's break this down into individual tasks.
 We already got you covered and implemented this task for you.
 
 #### 2. Make(Train|Test)Dataset
+We supply you with the scaffold for this task, so you can start and explore dask or simply go ahead with you usual pandas script.
+
 Read the csv provided by DownloadData and transform it into a numerical matrix ready for your ML models. 
 
 Be aware that the dataset is just a sample from the whole dataset so the values in your columns might not represent all possible values. 
@@ -121,6 +123,11 @@ check for a container named `debug-<something>` then execute
 
 Now you're in the container and can move around the filesystem execute commands 
 etc. To exit simply type `exit`
+
+### Exposed Dashboards
+This scaffold exposes 2 dashboards:
+- dask-scheduler @ [http://localhost:8787](http://localhost:8787). This let's you view how dask is executing your computation graph find more out [here](http://docs.dask.org/en/latest/diagnostics-distributed.html#dashboard)!
+- luigi-scheduler @ [http://localhost:8082](http://localhost:8082). This shows you you're high level task progress.  
 
 ## Evaluation Criteria
 Your solution will be evaluated against following criteria:
