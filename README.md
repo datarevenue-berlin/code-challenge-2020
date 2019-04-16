@@ -8,20 +8,20 @@ You will need docker an docker-compose to run this repository:
 * [How to install docker-compose](https://docs.docker.com/compose/install/)
 
 ## Goals
-The repository you see here is a minimal local version of our usual task orchestration pipeline. We run everything in docker containers. So each task must expose its functionality via a CLI. We the use luigi to spin up the containers and pass the necessary arguments to each container. See more details [here](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline). Although here we take it a little further by containerizing everything including the luigi workers. Furthermore for performance and simplicity we run everything using docker instead of kubernetes.
+The repository you see here is a minimal local version of our usual task orchestration pipeline. We run everything in docker containers. So each task must expose its functionality via a CLI. We then use luigi to spin up the containers and pass the necessary arguments to each container. See more details [here](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline).
 
-The repository already comes with the a leaf task implemented which will download the data set for you.
+The repository already comes with a leaf task implemented which will download the data set for you.
 
-The goal of this challenge is to implement a complete machine learning pipeline. This pipeline should build a proof of concept machine learning model and evaluate it on test data set.
+The goal of this challenge is to implement a complete machine learning pipeline. This pipeline should build a proof of concept machine learning model and evaluate it on a test data set.
 
-An important part of the goal is to explain the data set as well as the model to a fictional client. So your evaluation should include some plots on how your model makes the predictions.
+An important part of the task is to explain the data set and the model to a fictional client. So your evaluation should include some plots on how your model makes the predictions.
 
 ### Challenge
 To put things into the right perspective consider the following fictional scenario: 
 
 You are a AI Consultant at Data Revenue. One of our clients is a big online wine seller. After a successful strategic consulting we advice the client to optimize his portfolio by creating a rating predictor for his inventory. We receive a sample dataset (10k rows) from the client and will come back in a week to evaluate our model on a bigger data set that is only accessible from on-premise servers (>100k rows).
 
-The task now is to proof that this is possible to reduce risk before implementing a production solution. Our mini pipeline should later be able to run on their on premise machine which has only docker and docker-compose installed.
+The task is to show that a good prediction is possible and thereby make it less risky to implement a full production solution. Our mini pipeline should later be able to run on their on premise machine which has only docker and docker-compose installed.
 
 ### Data set
 
@@ -43,10 +43,10 @@ France|Steel and nervy mineralogy are the hallmarks of this wine at this stage. 
 
 ### Prerequisites
 Before starting this challenge you should know:
-1. How to train and evaluate a ML model
-1. Have solid understanding of the [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html) library and ideally the [dask](http://docs.dask.org/en/latest/dataframe.html) parallel computing library
-1. How to run [docker containers](https://docs.docker.com/get-started/)
-1. How to specify tasks and dependencies in Spotify's [luigi](https://luigi.readthedocs.io/en/stable/example_top_artists.html)
+1. How to train and evaluate a ML model.
+1. Have solid understanding of the [pandas](https://pandas.pydata.org/pandas-docs/stable/getting_started/10min.html) library and ideally the [dask](http://docs.dask.org/en/latest/dataframe.html) parallel computing library.
+1. How to run [docker containers](https://docs.docker.com/get-started/).
+1. How to specify tasks and dependencies in Spotify's [luigi](https://luigi.readthedocs.io/en/stable/example_top_artists.html).
 1. Have read our [TaC blogpost](https://www.datarevenue.com/en/blog/how-to-scale-your-machine-learning-pipeline). This will be very helpful to understand this repo's architecture!
 
 ### Requirements
@@ -59,14 +59,14 @@ We already got you covered and implemented this task for you.
 #### 2. Make(Train|Test)Dataset
 Read the csv provided by DownloadData and transform it into a numerical matrix ready for your ML models. 
 
-Be aware that the dataset is just a sample from the whole dataset so your columns might not represent all possible values. 
+Be aware that the dataset is just a sample from the whole dataset so the values in your columns might not represent all possible values. 
 
-Here at Data Revenue we use dask to parallelize Pandas operations. So we include also a running dask cluster which you *can* (you don't need to) use. Remember to partition you're csv if you plan on using dask (by using [blocksize](http://docs.dask.org/en/latest/dataframe-api.html#dask.dataframe.read_csv)).
+At Data Revenue we use dask to parallelize Pandas operations. So we include also a running dask cluster which you *can* (you don't need to) use. Remember to partition you're csv if you plan on using dask (by using [blocksize](http://docs.dask.org/en/latest/dataframe-api.html#dask.dataframe.read_csv)).
 
 Don't forget to split your data set according to best practices. So you might need more than a single task for this.
 
 #### 3. TrainModel
-Choose a suitable model type and train it on your previously built data set. We like models that don't take forever to train.. please no DNN (this includes word2vec). For the sake of simplicity you can use fixed hyperparameters (hopefully "hand tuned"). Serialize your model to a file. If necessary this file can include metadata. 
+Choose a suitable model type and train it on your previously built data set. We like models that don't take forever to train. Please no DNN (this includes word2vec). For the sake of simplicity you can use fixed hyperparameters (hopefully "hand tuned"). Serialize your model to a file. If necessary this file can include metadata. 
 
 The final data set will have more than 100k rows.
 
@@ -163,7 +163,7 @@ Yes you can submit you coding challenge partially finished in case you don't fin
 
 > I found a bug! What should I do?
 
-Please contact us! We wrote this in a hurry and also make mistakes. PRs on bugs get you some extra points ;)
+Please contact us! We wrote this in a hurry and also make mistakes. PRs on bugs get you extra points ;)
 
 > I have another question!
 
