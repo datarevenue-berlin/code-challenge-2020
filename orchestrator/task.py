@@ -68,6 +68,7 @@ class MakeDatasets(DockerTask):
 
     def command(self):
         # TODO: implement correct command
+        # Try to get the input path from self.requires() ;)
         pass
 
     def output(self):

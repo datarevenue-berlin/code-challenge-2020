@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if test -z "$var"
+if test -z "$1"
 then
       echo "Usage ./build-task-images.sh VERSION"
       echo "Version was passed!"
