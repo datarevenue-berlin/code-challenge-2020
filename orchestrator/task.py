@@ -51,7 +51,7 @@ class DownloadData(DockerTask):
         out_dir.mkdir(parents=True, exist_ok=True)
 
         return luigi.LocalTarget(
-            path=str(out_dir/f'{self.name}.csv')
+            path=str(out_dir/f'{self.fname}.csv')
         )
 
 
