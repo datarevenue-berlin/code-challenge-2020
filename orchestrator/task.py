@@ -66,6 +66,7 @@ class MakeDatasets(DockerTask):
     def requires(self):
         return DownloadData()
 
+    @property
     def command(self):
         # TODO: implement correct command
         # Try to get the input path from self.requires() ;)
