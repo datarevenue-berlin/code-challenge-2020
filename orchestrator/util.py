@@ -16,7 +16,7 @@ CONTAINER_TASK_VOLUMES = {
         'mode': 'rw'
     }
 }
-CONTAINER_TASK_NET = 'code-challenge-2019_default'
+CONTAINER_TASK_NET = 'code_challenge_default'
 
 
 class ContainerNotFound(Exception):
