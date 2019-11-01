@@ -63,7 +63,7 @@ Read the csv provided by DownloadData and transform it into a numerical matrix r
 
 Be aware that the dataset is just a sample from the whole dataset so the values in your columns might not represent all possible values. 
 
-At Data Revenue we use dask to parallelize Pandas operations. So we include also a running dask cluster which you *can* (you don't need to) use. Remember to partition you're csv if you plan on using dask (by using [blocksize](http://docs.dask.org/en/latest/dataframe-api.html#dask.dataframe.read_csv)).
+At Data Revenue we use dask to parallelize Pandas operations. So we include also a running dask cluster which you *can* (you don't need to) use. Remember to partition your csv if you plan on using dask (by using [blocksize](http://docs.dask.org/en/latest/dataframe-api.html#dask.dataframe.read_csv)).
 
 Don't forget to split your data set according to best practices. So you might need more than a single task for this.
 
@@ -102,7 +102,7 @@ This will download the data for you. It might be a good idea to execute:
 
 in a different terminal window to get a sense of what is going on. 
 
-We recommend to start developing in notebooks or you IDE locally if you're not very familiar with docker. This way we can consider you're solution even if you don't get the whole pipeline running. Also don't hesitate to contact us if you hit a serious blocker instead of wasting too much time on it.
+We recommend to start developing in notebooks or you IDE locally if you're not very familiar with docker. This way we can consider your solution even if you don't get the whole pipeline running. Also don't hesitate to contact us if you hit a serious blocker instead of wasting too much time on it.
 
 ### Troubleshooting in Task Containers
 We also included a Debug task for you which you may start if you need a shell
@@ -145,7 +145,7 @@ This is a TLDR; of [TaC blogpost](https://www.datarevenue.com/en/blog/how-to-sca
 
 - We spawn containers from a orchestrator container.
 - These spawned container run pipeline steps.
-- Services that need to be accessed by the containers are built and manged via docker-compose.
+- Services that need to be accessed by the containers are built and managed via docker-compose.
 - We see the orchestrator as a service.
 - To share data between containers we must tell the orchestrator where our project is located on the host machine. The orchestrator will then mount this directory into `/usr/share/data` in dynamically spawned containers. 
 - To allow the orchestrator to spawn containers we must expose the hosts docker socket to it.
@@ -158,7 +158,7 @@ Yes you are encouraged to use notebooks to do ad-hoc analysis. Please include th
 
 > What is the recommended way to develop this?
 
-Just install all the needed packages in a conda-env or virtualenv and start developing in you favorite IDE or within the beloved jupyter notebook or both. Once you are happy with the results, expose you're notebooks functionality in a CLI and package it with a Dockerfile. 
+Just install all the needed packages in a conda-env or virtualenv and start developing in you favorite IDE or within the beloved jupyter notebook or both. Once you are happy with the results, expose your notebooks functionality in a CLI and package it with a Dockerfile. 
 
 > Can I use other technologies? Such as R, Spark, Pyspark, Modin, etc.
 
@@ -166,7 +166,7 @@ Yes you can as long as you can provision the docker containers and spin up all t
 
 > Do you accept partial submissions?
 
-Yes you can submit you coding challenge partially finished in case you don't finish in time or have trouble with all the docker stuff. Unfinished challenges will be reviewed if some kind of model evaluation report is included (notebook or similar). You will loose points though as it will be considered as not runnable (no points in runnable category, no points in linux tools category and maximum 3 points in performance category).
+Yes you can submit you coding challenge partially finished in case you don't finish in time or have trouble with all the docker stuff. Unfinished challenges will be reviewed if some kind of model evaluation report is included (notebook or similar). You will lose points though as it will be considered as not runnable (no points in runnable category, no points in linux tools category and maximum 3 points in performance category).
 
 > I found a bug! What should I do?
 
