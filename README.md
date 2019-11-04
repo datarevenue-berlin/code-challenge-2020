@@ -19,7 +19,7 @@ An important part of the task is to explain the data set and the model to a fict
 ### Challenge
 To put things into the right perspective consider the following fictional scenario: 
 
-You are a AI Consultant at Data Revenue. One of our clients is a big online wine seller. After a successful strategic consulting we advice the client to optimize his portfolio by creating a rating predictor for his inventory. We receive a sample dataset (10k rows) from the client and will come back in a week to evaluate our model on a bigger data set that is only accessible from on-premise servers (>100k rows).
+You are a AI Consultant at Data Revenue. One of our clients is a big online wine seller. After a successful strategic consulting we advice the client to optimize his portfolio by creating a rating predictor (predict points given to a wine) for his inventory. We receive a sample dataset (10k rows) from the client and will come back in a week to evaluate our model on a bigger data set that is only accessible from on-premise servers (>100k rows).
 
 The task is to show that a good prediction is possible and thereby make it less risky to implement a full production solution. Our mini pipeline should later be able to run on their on premise machine which has only docker and docker-compose installed.
 
