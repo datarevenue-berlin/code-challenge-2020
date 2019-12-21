@@ -7,11 +7,16 @@ Usage: download_data.py [OPTIONS]
 
   Download a csv file and save it to local disk.
 
-  Parameters ---------- name: str     name of the csv file on local disk,
-  without '.csv' suffix. url: str     remote url of the csv file. out_dir:
-  directory where file should be saved to.
+  Parameters
+  ----------
+  name: name of the csv file on local disk,
+  without '.csv' suffix. 
+  url: remote url of the csv file.
+  out_dir; directory where file should be saved to.
 
-  Returns ------- None
+  Returns
+  ------- 
+  None
 
 Options:
   --name TEXT
