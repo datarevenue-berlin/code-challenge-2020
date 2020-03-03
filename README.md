@@ -1,6 +1,6 @@
 # Datarevenue Code Challenge
 
-Congratulations for making it to the Data Revenue Code Challenge 2019. This coding challenge will be used to evaluate your technical as well as your communication skills.
+Congratulations for making it to the Data Revenue Code Challenge 2020. This coding challenge will be used to evaluate your technical as well as your communication skills.
 
 You will need docker an docker-compose to run this repository: 
 
