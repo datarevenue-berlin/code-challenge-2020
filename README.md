@@ -90,6 +90,7 @@ Here you can get creative! Pick a good metric and show your communication and pr
 
 
 ## Get Started
+
 To get started execute the DownloadData task we provide this task already completely containerized for you. Let's first build the images, we have included a script so this is more streamlined:
 
 `./build-task-images.sh 0.1`
@@ -105,6 +106,16 @@ This will download the data for you. It might be a good idea to execute:
 in a different terminal window to get a sense of what is going on. 
 
 We recommend to start developing in notebooks or you IDE locally if you're not very familiar with docker. This way we can consider your solution even if you don't get the whole pipeline running. Also don't hesitate to contact us if you hit a serious blocker instead of wasting too much time on it.
+
+### NOTE: Configure your docker network
+
+Docker runs containers in their own networks. Compose automatically creates a network
+for each project. This project assumes that this network is named 
+`code-challenge-2020_default` depending on your folder name and compose version this 
+might not always be the case. You will get an error when trying to download the data if
+this network is named differently for you. If you run into this error, please execute:
+`docker network ls` and identify the correct network name. Next open the 
+`docker-compose.yml` and edit the env variable on the orchestrator service.
 
 ### Troubleshooting in Task Containers
 We also included a Debug task for you which you may start if you need a shell

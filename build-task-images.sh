@@ -2,7 +2,7 @@
 if test -z "$1"
 then
       echo "Usage ./build-task-images.sh VERSION"
-      echo "Version was passed!"
+      echo "No version was passed! Please pass a version to the script e.g. 0.1"
       exit 1
 fi
 
