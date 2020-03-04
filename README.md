@@ -14,12 +14,12 @@ The repository already comes with a leaf task implemented which will download th
 
 The goal of this challenge is to implement a complete machine learning pipeline. This pipeline should build a proof of concept machine learning model and evaluate it on a test data set.
 
-An important part of the task is to explain the data set and the model to a fictional client. So your evaluation should include some plots on how your model makes the predictions.
+**An important part of this challenge is to assess and explain the model to a fictional client with limited statistical knowledge. So your evaluation should include some plots on how your model makes the predictions. Finally you need to give an essesment if it will make sense for the client to implement this model!**
 
 ### Challenge
 To put things into the right perspective consider the following fictional scenario: 
 
-You are a AI Consultant at Data Revenue. One of our clients is a big online wine seller. After a successful strategic consulting we advice the client to optimize his portfolio by creating a rating predictor (predict points given to a wine) for his inventory. We receive a sample dataset (10k rows) from the client and will come back in a week to evaluate our model on a bigger data set that is only accessible from on-premise servers (>100k rows).
+You are a AI Consultant at Data Revenue. One of our clients is a big online wine seller. After a successful strategic consulting we advice the client to optimize his portfolio by creating a **rating predictor (predict points given to a wine) for his inventory.** We receive a sample dataset (10k rows) from the client and will come back in a week to evaluate our model on a bigger data set that is only accessible from on-premise servers (>100k rows).
 
 The task is to show that a good prediction is possible and thereby make it less risky to implement a full production solution. Our mini pipeline should later be able to run on their on premise machine which has only docker and docker-compose installed.
 
@@ -74,6 +74,8 @@ The final data set will have more than 100k rows.
 
 #### 4. EvaluateModel
 Here you can get creative! Pick a good metric and show your communication and presentation skills. Load your model and evaluate it on a held out part of the data set. This task should have a concrete outcome e.g. a zip of plots or even better a whole report (check the [pweave](http://mpastell.com/pweave/) package).
+
+**You will most likely need the output of this task to tell the client if the model is suited for his endavour. This should include a assesment of the quality of the model, and also the consequences of the errors that the model makes.**
 
 #### Other requirements
 - Each task:
