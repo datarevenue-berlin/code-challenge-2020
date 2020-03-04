@@ -33,6 +33,8 @@ services:
     environment:
       - PROJECT_ROOT=$PWD
       - PIPELINE_VERSION=0.1
+      # TODO: Potentially adjust the network depending on your compose version!
+      - ORCHESTRATOR_NETWORK=code-challenge-2020_default
     volumes:
       - ./data_root:/usr/share/data/ # Mount data directory
       - /var/run/docker.sock:/var/run/docker.sock # Mount docker socker

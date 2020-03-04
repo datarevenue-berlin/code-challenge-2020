@@ -16,7 +16,7 @@ CONTAINER_TASK_VOLUMES = {
         'mode': 'rw'
     }
 }
-CONTAINER_TASK_NET = 'code_challenge_default'
+CONTAINER_TASK_NET = os.getenv('ORCHESTRATOR_NETWORK', 'code_challenge_default')
 
 
 class ContainerNotFound(Exception):
