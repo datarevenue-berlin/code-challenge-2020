@@ -145,9 +145,10 @@ This scaffold exposes 2 dashboards:
 ## Evaluation Criteria
 Your solution will be evaluated against following criteria:
 
-* Is it runnable? **25 points**
-* ML Best Practices **20 points**
+* Is it runnable? (or does it look runnable this shouldn't be binary) **15 points**
+* ML Best Practices **15 points**
 * Presentation of results (during interview) **20 points**
+* Written report quality (before interview) **15 points**
 * Code Quality (incl. Documentation and PEP8) **10 points**
 * Structure/Modularity **10 points**
 * Correct use of linux tools (dockerfiles, shellscripts) **10 points**
@@ -191,8 +192,14 @@ Feel free to create an issue! Discussions in issues are generally encouraged.
 
 
 ## Submission
+The following artifacts/files are expected as deliverables
+
+- Your solution containing all files necessary to run it as a docker-compose project
+- Include a complete log of your local run of the complete pipeline
+- Include your client facing rendered report such as a (executed) notebook, rendered pweave report, or pdf
+
 Please zip your solution including all files and send to us with
 the following naming schema:
 ```
-cc19_<first_name>_<last_name>.zip
+cc20_<first_name>_<last_name>.zip
 ```
