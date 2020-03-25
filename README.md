@@ -196,7 +196,7 @@ The following artifacts/files are expected as deliverables
 
 - Your solution containing all files necessary to run it as a docker-compose project
 - Include a complete log of your local run of the complete pipeline
-- Include your client facing rendered report such as a (executed) notebook, rendered pweave report, pdf or powerpoint
+- Include your client facing rendered report such as a (executed) notebook, rendered pweave report, or pdf
 
 Please zip your solution including all files and send to us with
 the following naming schema:
