@@ -14,7 +14,7 @@ class Debug(DockerTask):
 
     @property
     def image(self):
-        return 'code-challenge/download-data:0.1'
+        return 'code-challenge/download-data:{VERSION}'
 
     @property
     def command(self):
