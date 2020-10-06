@@ -15,8 +15,8 @@ __pycache__/
 **/.ipynb_checkpoints
 
 # any data
-data_root/**.csv
-data_root/**.pickle
-data_root/**.pkl
-data_root/**.json
-data_root/**.parquet
+data_root/**/*.csv
+data_root/**/*.pickle
+data_root/**/*.pkl
+data_root/**/*.json
+data_root/**/*.parquet
