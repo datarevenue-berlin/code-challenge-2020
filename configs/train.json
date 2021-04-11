@@ -21,6 +21,7 @@
            "loss_function": "Quantile:alpha=0.5",
            "learning_rate": 0.1,
            "random_seed": 1305,
+	   "verbose": false,
            "depth": 4,
            "l2_leaf_reg": 9
        }
@@ -44,6 +45,7 @@
            "loss_function": "Quantile:alpha=0.5",
            "learning_rate": 0.1,
            "random_seed": 1305,
+	   "verbose": false,
            "depth": 4,
            "l2_leaf_reg": 9
        }
