@@ -1,0 +1,5 @@
+pandas==1.1.1
+pyarrow==1.0.1
+catboost==0.25.1
+numpy==1.19.5
+click==7.1.2

@@ -1,0 +1,9 @@
+pandas==1.1.1
+pyarrow==1.0.1
+catboost==0.25.1
+numpy==1.19.5
+click==7.1.2
+shap==0.39.0
+plotly==4.14.3
+ipython==7.16.1
+Pweave==0.30.3

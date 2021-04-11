@@ -8,11 +8,16 @@ from docker.errors import NotFound
 from pathlib import Path
 
 data_root = Path(os.getenv('PROJECT_ROOT')) / 'data_root'
+config_path = Path(os.getenv('PROJECT_ROOT')) / 'configs'
 
 CONTAINER_TASK_ENV = {}
 CONTAINER_TASK_VOLUMES = {
     str(data_root): {
         'bind': '/usr/share/data/',
+        'mode': 'rw'
+    },
+    str(config_path): {
+        'bind': '/usr/share/configs/',
         'mode': 'rw'
     }
 }
